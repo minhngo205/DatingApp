@@ -12,6 +12,11 @@ namespace DatingApp.DatingApp.API.Database.Entities
         public string Username { get; set; }
         [Required]
         [StringLength(255)]
+        [EmailAddress]
         public string Email { get; set; }
+
+        public byte[] passwordHash {get; set;}
+
+        public byte[] passwordSalt {get; set;}
     }
 }
