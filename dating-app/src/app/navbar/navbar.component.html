@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+      <a class="navbar-brand" href="/">
+        <img src="https://www.logo.wine/a/logo/Tinder_(app)/Tinder_(app)-Flame-Logo.wine.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        TINHER
+      </a>
+
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="#">{{ user.username }}</a>
+        </li> -->
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input 
+        class="form-control mr-sm-2" 
+        type="text" 
+        placeholder="Username" 
+        name="username"
+        [(ngModel)] = "user.username"
+        />
+        <input 
+        class="form-control mr-sm-2" 
+        type="password" 
+        placeholder="Password"
+        name="password"
+        [(ngModel)] = "user.password"
+        />
+        
+        <button class="btn btn-success my-2 my-sm-0 mr-sm-2" type="button" (click)="login()">
+          Login
+        </button>
+        <button class="btn btn-primary my-2 my-sm-0" type="button">
+          Register
+        </button>
+      </form>
+    </div>
+  </nav>

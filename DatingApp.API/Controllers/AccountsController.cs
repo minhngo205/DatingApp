@@ -37,7 +37,10 @@ namespace DatingApp.DatingApp.API.Controllers
             };
             _context.Add(user);
             _context.SaveChanges();
-            return Ok(_tokenService.CreateToken(user));
+            return Ok(new UserResponedto{
+                Username = user.Username,
+                Token = _tokenService.CreateToken(user)
+            });
         }
 
         [HttpPost("login")]
@@ -51,7 +54,10 @@ namespace DatingApp.DatingApp.API.Controllers
             {
                 if(computedHash[i] != user.passwordHash[i]) return Unauthorized("Invalid password");
             }
-            return Ok(_tokenService.CreateToken(user));
+            return Ok(new UserResponedto{
+                Username = user.Username,
+                Token = _tokenService.CreateToken(user)
+            });
         }
     }
 }
