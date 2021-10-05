@@ -1,15 +1,9 @@
-using System.Text;
-using DatingApp.DatingApp.API.Database;
 using DatingApp.DatingApp.API.Extensions;
-using DatingApp.DatingApp.API.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace DatingApp.API
@@ -26,18 +20,21 @@ namespace DatingApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+
+            services.AddCors(o =>
+                o.AddPolicy("CorsPolicy", builder =>
+                    builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DatingApp.API", Version = "v1" });
             });
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => builder.WithOrigins("http://localhost:4200")));
 
             services.AddApplicationService(Configuration);
+
             services.AddIdentityServices(Configuration);
         }
 
@@ -51,11 +48,11 @@ namespace DatingApp.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DatingApp.API v1"));
             }
 
-            app.UseCors("CorsPolicy");
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
 

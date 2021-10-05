@@ -30,12 +30,13 @@
           <a class="nav-link" href="#">{{ user.username }}</a>
         </li> -->
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form class="form-inline my-2 my-lg-0" *ngIf="!(accountsService.currentUser$ | async)">
         <input 
         class="form-control mr-sm-2" 
         type="text" 
         placeholder="Username" 
         name="username"
+        autocomplete="off"
         [(ngModel)] = "user.username"
         />
         <input 
@@ -53,5 +54,12 @@
           Register
         </button>
       </form>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="(accountsService.currentUser$ | async)">
+        <li class="text-light" style="margin: auto;">Hi, {{ (accountsService.currentUser$ | async)?.username }}</li>
+        <li class="text-light">
+          <button class="btn btn-danger" style="margin-left: 10px;" (click)="accountsService.logoutService()">Log out</button>
+        </li>
+      </ul>
     </div>
   </nav>

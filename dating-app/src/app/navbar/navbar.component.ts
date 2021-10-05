@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserLogin } from '../_model/UserLogin';
+import { AccountsService } from '../_services/accounts.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +10,18 @@ import { UserLogin } from '../_model/UserLogin';
 export class NavbarComponent implements OnInit {
   user: UserLogin = new UserLogin();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(public accountsService:AccountsService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() { }
 
   login(){
-    console.log(this.user);
-    // this.httpClient.post("https://localhost:5001/api/Accounts/login",)
+    this.accountsService.loginService(this.user).subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 }

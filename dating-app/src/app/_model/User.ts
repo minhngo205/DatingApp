@@ -12,3 +12,14 @@ export class User {
     //     this.email = mail;
     // }
 }
+
+export class UserToken {
+    username: string = '';
+    token: string = '';
+}
+
+export class UserRegister {
+    username: string = '';
+    email: string = '';
+    password: string = '';
+  }

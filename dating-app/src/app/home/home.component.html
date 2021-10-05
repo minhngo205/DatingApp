@@ -1,0 +1,16 @@
+<div class="container" *ngIf="!isRegisterMode">
+    <div class="text-center">
+        <h1>Welcome to TINHER</h1>
+        <p>You can signup for new account here</p>
+        <div class="text-center">
+            <button class="btn btn-primary" (click)="isRegisterMode = !isRegisterMode">Register</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="isRegisterMode">
+    <app-register-form [userRegis]="user"
+    (cancelRegis)="cancelRegisterMode($event)">
+        
+    </app-register-form>
+</div>
