@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from './_model/User';
+import { AccountsService } from './_services/accounts.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,17 +9,16 @@ import { User } from './_model/User';
 })
 export class AppComponent implements OnInit {
   title = 'Dating App';
-  ListUser: User[] = [];
-  constructor(private httpClient: HttpClient) {}
+  constructor(public accountService: AccountsService) {}
   ngOnInit(): void {
-    this.fetchUsers();
+    this.accountService.refreshToken()
   }
-  fetchUsers() {
-    this.httpClient
-      .get('https://localhost:5001/api/users')
-      .subscribe((response) => {
-        this.ListUser = response as User[];
-        console.log(this.ListUser);
-      });
-  }
+  // fetchUsers() {
+  //   this.httpClient
+  //     .get('https://localhost:5001/api/users')
+  //     .subscribe((response) => {
+  //       this.ListUser = response as User[];
+  //       console.log(this.ListUser);
+  //     });
+  // }
 }
