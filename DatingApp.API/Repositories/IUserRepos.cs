@@ -22,5 +22,7 @@ namespace DatingApp.DatingApp.API.Repositories
         void CreateUser(User user);
 
         bool SaveChanges();
+
+        void UpdateProfile(string username, ProfileDTO profile);
     }
 }

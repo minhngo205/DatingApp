@@ -1,0 +1,92 @@
+<h1 class="text-center">Profile</h1>
+<form #registerForm="ngForm" (ngSubmit)="submit()" *ngIf="profile">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      readonly="readonly"
+      [(ngModel)]="profile.username"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      readonly="readonly"
+      [(ngModel)]="profile.email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="dateOfBirth">Birthday</label>
+    <input
+      type="string"
+      class="form-control"
+      id="dateOfBirth"
+      name="dateOfBirth"
+      placeholder="KnownAs"
+      [(ngModel)]="profile.dateofBirth"
+    />
+  </div>
+  <div class="form-group">
+    <label for="knownAs">KnownAs</label>
+    <input
+      type="text"
+      class="form-control"
+      id="knownAs"
+      name="knownAs"
+      placeholder="KnownAs"
+      [(ngModel)]="profile.aka"
+    />
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <input
+      type="text"
+      class="form-control"
+      id="gender"
+      name="gender"
+      placeholder="Gender"
+      [(ngModel)]="profile.gender"
+    />
+  </div>
+  <div class="form-group">
+    <label for="introduction">Introduction</label>
+    <input
+      type="text"
+      class="form-control"
+      id="introduction"
+      name="introduction"
+      placeholder="Introduction"
+      [(ngModel)]="profile.intro"
+    />
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <input
+      type="text"
+      class="form-control"
+      id="city"
+      name="city"
+      placeholder="City"
+      [(ngModel)]="profile.city"
+    />
+  </div>
+  <div class="form-group">
+    <label for="avatar">Avatar</label>
+    <input
+      type="text"
+      class="form-control"
+      id="avatar"
+      name="avatar"
+      placeholder="Avatar"
+      [(ngModel)]="profile.avatar"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
